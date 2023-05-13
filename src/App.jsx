@@ -1,15 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import './App.css'
 import Nav from './components/Nav';
-import { useTitle } from './hooks/useTitle'
 import Footer from './components/Footer';
+import StayTop from './components/StayTop';
 
 function App() {
-
-  useTitle("Welcome");
-
   return (
     <>
+      <StayTop />
       <Nav />
       <Outlet />
       <Footer />

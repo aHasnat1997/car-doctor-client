@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -11,10 +12,10 @@ const Services = () => {
       .catch(err => console.error(err));
   }, [])
 
-  console.log(services);
+  // console.log(services);
 
   return (
-    <div className="max-w my-8">
+    <div id="services" className="max-w my-8">
       <div className="text-center">
         <h3 className='text-primary font-extrabold text-2xl'>Services</h3>
         <h1 className="text-5xl font-bold">Our Service Area</h1>
@@ -29,9 +30,9 @@ const Services = () => {
                 <h2 className="card-title text-4xl">{service.title}</h2>
                 <div className="card-actions justify-end items-center">
                   <p className="text-2xl">Price: {service.price}$</p>
-                  <button className="btn border-0 text-primary hover:bg-transparent hover:text-secondary text-2xl">
+                  <Link to={`/service_details/${service._id}`} className="btn border-0 text-primary hover:bg-transparent hover:text-secondary text-2xl">
                     <FaArrowRight />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

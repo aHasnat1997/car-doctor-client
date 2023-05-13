@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthSystem/AuthProvider';
+import placeholder from '../assets/placeholder.png';
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handelLogOut = () => {
+    logOut().then(() => console.log("User Log Out")).catch(err => console.log(err.message))
+  }
+
   return (
     <div className="navbar max-w">
       <div className="navbar-start">
@@ -11,9 +20,10 @@ const Nav = () => {
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to='/'>Home</Link></li>
-            <li><a>About</a></li>
-            <li><a>Services</a></li>
-            <li><a>Contact</a></li>
+            <li><a href='#about'>About</a></li>
+            <li><Link to='/'>My Appointment</Link></li>
+            <li><a href='#services'>Services</a></li>
+            <li><a href='#contact'>Contact</a></li>
           </ul>
         </div>
         <img className='w-20' src={logo} alt="logo" />
@@ -21,14 +31,36 @@ const Nav = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li><Link to='/'>Home</Link></li>
-          <li><a>About</a></li>
-          <li><a>Services</a></li>
-          <li><a>Contact</a></li>
+          <li><a href='#about'>About</a></li>
+          <li><Link to='/'>My Appointment</Link></li>
+          <li><a href='#services'>Services</a></li>
+          <li><a href='#contact'>Contact</a></li>
         </ul>
       </div>
       <div className="navbar-end gap-2">
-        <Link to='/login' className="btn btn-secondary">Log In</Link>
-        <Link className="btn btn-outline btn-primary">Appointment</Link>
+        {
+          user ? (<div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={user.photoURL ? user.photoURL : placeholder} />
+              </div>
+            </label>
+            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li><a>Settings</a></li>
+              <li><button onClick={handelLogOut} className='btn btn-outline'>Log Out</button></li>
+            </ul>
+          </div>)
+            :
+            <Link to='/login' className="btn btn-secondary btn-lg font-extrabold text-2xl">Log In</Link>
+        }
+
+
       </div>
     </div>
   );
