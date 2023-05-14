@@ -10,6 +10,7 @@ import AuthProvider from './AuthSystem/AuthProvider.jsx';
 import ServiceDetails from './pages/serviceDetails/ServiceDetails.jsx';
 import CheckOut from './pages/checkOut/CheckOut.jsx';
 import ProtectedRoutes from './routes/ProtectedRoutes.jsx';
+import Appointment from './pages/appointment/Appointment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: '/check_out/:id',
         element: <ProtectedRoutes><CheckOut /></ProtectedRoutes>,
         loader: ({ params }) => fetch(`http://localhost:3000/services/${params.id}`)
+      },
+      {
+        path: '/appointments',
+        element: <ProtectedRoutes><Appointment /></ProtectedRoutes>
       },
       {
         path: '/login',

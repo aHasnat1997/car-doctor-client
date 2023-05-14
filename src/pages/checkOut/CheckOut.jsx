@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Banner from "../../components/Banner";
 import { useTitle } from "../../hooks/useTitle";
 import { useContext } from "react";
@@ -10,7 +10,7 @@ const CheckOut = () => {
   useTitle('Check Out');
   const { user } = useContext(AuthContext);
   const { price, title } = useLoaderData();
-
+  const navigate = useNavigate();
 
 
   const handelAppointment = event => {
@@ -44,6 +44,7 @@ const CheckOut = () => {
             icon: 'success',
             title: '🎉 Appointment fixed Successfully',
           })
+          navigate('/appointments');
         }
       })
       .catch(err => {
@@ -84,12 +85,12 @@ const CheckOut = () => {
         <div className="flex items-center gap-4 my-4">
           <div className="flex items-center flex-1">
             <label htmlFor="date" className="border-2 p-3 rounded-s-xl bg-secondary">Date</label>
-            <input type="date" name="date" id="date" className="input input-bordered rounded-s-none w-full" />
+            <input type="date" name="date" id="date" className="input input-bordered rounded-s-none w-full" required />
           </div>
 
           <div className="flex items-center flex-1">
             <label htmlFor="carName" className="border-2 p-3 rounded-s-xl bg-secondary">Car</label>
-            <input type="text" name="carName" id="carName" placeholder="Car Model" className="input input-bordered rounded-s-none w-full" />
+            <input type="text" name="carName" id="carName" placeholder="Car Model" className="input input-bordered rounded-s-none w-full"  required/>
           </div>
         </div>
         <input type="submit" className="w-full btn btn-primary" value="Order Appointment" />

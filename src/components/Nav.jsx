@@ -21,7 +21,7 @@ const Nav = () => {
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to='/'>Home</Link></li>
             <li><a href='#about'>About</a></li>
-            <li><Link to='/'>My Appointment</Link></li>
+            <li><Link to='/appointments'>My Appointment</Link></li>
             <li><a href='#services'>Services</a></li>
             <li><a href='#contact'>Contact</a></li>
           </ul>
@@ -32,7 +32,7 @@ const Nav = () => {
         <ul className="menu menu-horizontal px-1">
           <li><Link to='/'>Home</Link></li>
           <li><a href='#about'>About</a></li>
-          <li><Link to='/'>My Appointment</Link></li>
+          <li><Link to='/appointments'>My Appointment</Link></li>
           <li><a href='#services'>Services</a></li>
           <li><a href='#contact'>Contact</a></li>
         </ul>
